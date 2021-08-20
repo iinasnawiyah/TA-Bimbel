@@ -8,14 +8,14 @@
 		<div class="pull-left">
 			<h5 class="text-blue">Riwayat Pembayaran Paket</h5>
 			<p class="font-14">Upload Bukti Pembayaran </p>
-				<form method="POST" enctype="multipart/form-data" action="{{ route('tambahBayar') }}">
-					@csrf
-					<input type="hidden" name="id_pelayanan" value="{{$id_pelayanan}}">
-					<input type="file" name="bukti_pembayaran" accept=".jpg, .png, .jpeg" required>
-					<button type="submit" class="btn btn-outline-primary">Upload</button>
-				</form>
-				
-				<!-- <a class="text-primary" href="{{ route('tambahBayar', $id_pelayanan) }}">Tambah Data</a> -->
+			<form method="POST" enctype="multipart/form-data" action="{{ route('tambahBayar') }}">
+				@csrf
+				<input type="hidden" name="id_pelayanan" value="{{$id_pelayanan}}">
+				<input required type="file" name="photo" accept=".jpg, .png, .jpeg">
+				<button type="submit" class="btn btn-outline-primary">Upload</button>
+			</form>
+
+			<!-- <a class="text-primary" href="{{ route('tambahBayar', $id_pelayanan) }}">Tambah Data</a> -->
 			<!-- </p> -->
 		</div>
 	</div>
@@ -31,7 +31,7 @@
 			</thead>
 			<tbody>
 				@php $no = 1; $i=0; @endphp
-                @foreach($data as $d)
+				@foreach($data as $d)
 				<tr>
 					<td class="table-plus">{{$no++}}</td>
 					<td>
@@ -49,7 +49,7 @@
 								<form action="#" method="POST">
 									<a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
 									{{ method_field('DELETE') }}
-                                    {{ csrf_field() }}
+									{{ csrf_field() }}
 									<button type="submit" class="dropdown-item"><i class="fa fa-trash"></i> Delete</button>
 								</form>
 							</div>

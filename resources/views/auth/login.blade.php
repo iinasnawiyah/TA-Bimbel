@@ -112,6 +112,11 @@
                                     {{ Session::get('error') }}
                                 </div>
                                 @endif
+                                @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status')}}
+                                </div>
+                                @endif
                                 <div class="form-group mb-4">
                                     <label for="email">Email</label>
                                     <div class="input-group">
@@ -149,6 +154,12 @@
                                 <span class="fw-normal">
                                     Belum Punya Akun?
                                     <a href="{{ route('register') }}" class="fw-bold">Buat akun</a>
+                                </span>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-4">
+                                <span class="fw-normal">
+                                    Aktivasi Akun Disini !
+                                    <a href="{{ route('hub_admin') }}" class="fw-bold">Hubungi Admin</a>
                                 </span>
                             </div>
                         </div>

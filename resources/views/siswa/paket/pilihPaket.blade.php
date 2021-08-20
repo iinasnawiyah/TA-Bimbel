@@ -6,12 +6,12 @@
 <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 	<div class="clearfix">
 		<div class="pull-left">
-			<h4 class="text-blue">Form Tambah Kategori Paket</h4>
+			<h4 class="text-blue">Form Pilih Paket</h4>
 			<p class="mb-30 font-14"></p>
 		</div>
 	</div>
 	<form method="POST" action="{{ route('paket.store') }}">
-    @csrf
+		@csrf
 		<div class="form-group row">
 			<label class="col-sm-12 col-md-2 col-form-label">Nama Paket</label>
 			<div class="col-sm-12 col-md-10">
@@ -25,15 +25,15 @@
 			<div class="col-sm-12 col-md-10">
 				<select class="form-control" name="kelas" required>
 					<option disabled selected>--Pilih Kelas--</option>
-				@foreach($kelas as $k)
-				<?php 
-				for ($i=0; $i <count($nama_kelas) ; $i++) { ?>
-					<?php if ($k->nama_kelas==$nama_kelas[$i]){?>
-					
-					<option value="{{$k->id_kelas}}">{{$k->nama_kelas}}</option>
-				<?php } ?>
-				<?php } ?>
-				@endforeach
+					@foreach($kelas as $k)
+					<?php
+					for ($i = 0; $i < count($nama_kelas); $i++) { ?>
+						<?php if ($k->nama_kelas == $nama_kelas[$i]) { ?>
+
+							<option value="{{$k->id_kelas}}">{{$k->nama_kelas}}</option>
+						<?php } ?>
+					<?php } ?>
+					@endforeach
 				</select>
 			</div>
 		</div>
@@ -49,8 +49,8 @@
 		</div> -->
 		<div class="form-group row">
 			<div class="col-sm-12 col-md-12">
-			<button  type="submit" class="btn btn-primary px-4 float-left">Simpan</button>
-		</div>
+				<button type="submit" class="btn btn-primary px-4 float-left">Simpan</button>
+			</div>
 		</div>
 	</form>
 </div>

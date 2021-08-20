@@ -7,6 +7,7 @@ use App\Models\User_M;
 use App\Models\Pengajar_M;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class SiswaController extends Controller
 {
@@ -88,11 +89,33 @@ class SiswaController extends Controller
         ];
         $user = [
             'email'         => $request->email,
-            'status'        => $request->status
+            'status'        => $request->status,
+            'email_body' => $request->email_body,
+            'nama_siswa' => $request->nama_siswa,
+            'telepon'       => $request->telepon,
+            'alamat'        => $request->alamat
         ];
 
         Siswa_M::find($id)->update($siswa);
         User_M::find($id_user)->update($user);
+
+
+        //data
+        $email = $request->email;
+
+
+        //    //kirim email
+        Mail::send('email', $user, function ($mail) use ($email) {
+            $mail->to($email, 'no-replay')
+                ->subject("Aktivasi Akun");
+            $mail->from('bimbeltamanbelajar@gmail.com', 'Bimbel Taman Belajar');
+        });
+
+
+        //cek kegagalan
+        if (Mail::failures()) {
+            return "Gagal Mengirim Email";
+        }
 
         return redirect()->route('siswa.index')
             ->with('success', 'Siswa Berhasil Di update');
@@ -104,10 +127,13 @@ class SiswaController extends Controller
      * @param  \App\Models\Siswa_M  $siswa_M
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $data = Siswa_M::find($id);
-        $data->delete();
+        // $data = Siswa_M::find($request->id_siswa);
+        // $data->delete();
+        Siswa_M::destroy($request->id_siswa);
+        User_M::destroy($request->id_user);
+
         return redirect()->route('siswa.index')
             ->with('success', 'Siswa Berhasil Di hapus');
     }

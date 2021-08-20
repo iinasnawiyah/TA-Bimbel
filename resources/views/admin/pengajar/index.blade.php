@@ -62,6 +62,8 @@
                             <td>{{ $d->tanggal_masuk }}</td>
                             <td>
                                 <form action="{{ route('pengajar.destroy', $d->id_pengajar) }}" method="POST">
+                                    <input type="hidden" name="id_pengajar" value="{{ $d->id_pengajar }}">
+                                    <input type="hidden" name="id_user" value="{{ $d->id_user }}">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <a href="{{ route('pengajar.edit', $d->id_pengajar) }}"

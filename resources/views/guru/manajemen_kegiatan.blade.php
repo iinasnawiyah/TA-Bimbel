@@ -56,8 +56,8 @@
 					</td>
 					<td>
 						<!-- <a href="#" class="btn btn-sm btn-primary btn-block">Lihat</a> -->
-						<a href="#" class="btn btn-sm btn-info ">Edit</a>
-						<a href="#" class="btn btn-sm btn-danger ">Hapus</a>
+						<!-- <a href="#" class="btn btn-sm btn-info ">Edit</a>
+						<a href="#" class="btn btn-sm btn-danger ">Hapus</a> -->
 					</td>
 				</tr>
 				@endforeach

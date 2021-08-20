@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\SiswaController;
 use App\Http\Controllers\guru\DashboardguruController;
 use App\Http\Controllers\guru\DatasiswaController;
 use App\Http\Controllers\guru\ManajemenController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\siswa\DashboardsiswaController;
 use App\Http\Controllers\siswa\PaketController;
 
@@ -30,30 +31,32 @@ use App\Http\Controllers\siswa\PaketController;
 //     return view('admin.dashboard');
 // });
 
-Route::get('/', [AuthController::class, 'showFormLogin'])->name('login');
+Route::get('/', [LandingController::class, 'index'])->name('index');
 Route::get('login', [AuthController::class, 'showFormLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::get('register', [AuthController::class, 'showFormRegister'])->name('register');
 Route::post('register', [AuthController::class, 'register']);
+Route::get('hub_admin', [AuthController::class, 'showhub_admin'])->name('hub_admin');
+Route::post('hub_admin', [AuthController::class, 'hub_admin']);
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::middleware(['Ceklogin:admin'])->get('admin/dashboard', [DashboardController::class, 'index'])->name('dashboardadmin');
-	Route::middleware(['Ceklogin:pengajar'])->get('guru/dashboard', [DashboardguruController::class, 'index'])->name('dashboardguru');
-	Route::middleware(['Ceklogin:siswa'])->get('siswa/dashboard', [DashboardsiswaController::class, 'index'])->name('dashboardsiswa');
-	
-
-	Route::prefix('guru')->group(function(){
-		Route::get('/datasiswa', [DatasiswaController::class, 'index'])->name('dataSiswa');
-		Route::get('/manajemen', [ManajemenController::class, 'index'])->name('manajemenKegiatan');
-		Route::get('/manajemen/form', [ManajemenController::class, 'form'])->name('tambahKegiatan');
-		Route::post('/manajemen/create', [ManajemenController::class, 'create'])->name('prosesTambahKegiatan');
-	});
-		Route::get('/autosiswa', [ManajemenController::class, 'autosiswa'])->name('autoSiswa');
-		Route::get('/getsiswa', [ManajemenController::class, 'getsiswa'])->name('getSiswa');
+    Route::middleware(['Ceklogin:admin'])->get('admin/dashboard', [DashboardController::class, 'index'])->name('dashboardadmin');
+    Route::middleware(['Ceklogin:pengajar'])->get('guru/dashboard', [DashboardguruController::class, 'index'])->name('dashboardguru');
+    Route::middleware(['Ceklogin:siswa'])->get('siswa/dashboard', [DashboardsiswaController::class, 'index'])->name('dashboardsiswa');
 
 
-	Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-	Route::get('logoutwithsession', [AuthController::class, 'logoutwithsession'])->name('logoutsession');
+    Route::prefix('guru')->group(function () {
+        Route::get('/datasiswa', [DatasiswaController::class, 'index'])->name('dataSiswa');
+        Route::get('/manajemen', [ManajemenController::class, 'index'])->name('manajemenKegiatan');
+        Route::get('/manajemen/form', [ManajemenController::class, 'form'])->name('tambahKegiatan');
+        Route::post('/manajemen/create', [ManajemenController::class, 'create'])->name('prosesTambahKegiatan');
+    });
+    Route::get('/autosiswa', [ManajemenController::class, 'autosiswa'])->name('autoSiswa');
+    Route::get('/getsiswa', [ManajemenController::class, 'getsiswa'])->name('getSiswa');
+
+
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('logoutwithsession', [AuthController::class, 'logoutwithsession'])->name('logoutsession');
 });
 
 
@@ -78,6 +81,11 @@ Route::prefix('admin')->group(function () {
     Route::get('editKelBayar/{id}', [App\Http\Controllers\admin\PaketController::class, 'editKelBayar'])->name('editKelBayar');
     Route::post('submitPengajar', [App\Http\Controllers\admin\PaketController::class, 'submitPengajar'])->name('submitPengajar');
     Route::post('submitLunas', [App\Http\Controllers\admin\PaketController::class, 'submitLunas'])->name('submitLunas');
+    Route::get('kelKegiatan', [App\Http\Controllers\admin\PaketController::class, 'kelKegiatan'])->name('kelKegiatan');
+    Route::get('dataKegiatan/{id}', [App\Http\Controllers\admin\PaketController::class, 'dataKegiatan'])->name('dataKegiatan');
+    Route::get('listPaket', [App\Http\Controllers\admin\PaketController::class, 'listPaket'])->name('listPaket');
+    Route::post('listAbsen', [App\Http\Controllers\admin\PaketController::class, 'listAbsen'])->name('listAbsen');
+    Route::post('laporanAbsen', [App\Http\Controllers\admin\PaketController::class, 'exportAbsen'])->name('laporanAbsen');
 });
 Route::prefix('siswa')->group(function () {
     Route::resource('paket', App\Http\Controllers\siswa\PaketController::class);

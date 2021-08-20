@@ -5,12 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
-use Validator;
-use Hash;
-use Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+// use Validator;
+// use Hash;
+// use Session;
 use App\Models\User_M;
 use App\Models\Siswa_M;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
+
+
 
 
 
@@ -20,11 +27,11 @@ class AuthController extends Controller
     {
         if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
             //Login Success
-            if(Auth::user()->role =='admin'){
-                return redirect()->route('dashboardadmin');   
-            }elseif(Auth::user()->role=='pengajar'){
+            if (Auth::user()->role == 'admin') {
+                return redirect()->route('dashboardadmin');
+            } elseif (Auth::user()->role == 'pengajar') {
                 return redirect()->route('dashboardguru');
-            }elseif(Auth::user()->role=='siswa'){
+            } elseif (Auth::user()->role == 'siswa') {
                 return redirect()->route('dashboardsiswa');
             }
         }
@@ -47,7 +54,7 @@ class AuthController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
 
@@ -60,25 +67,23 @@ class AuthController extends Controller
 
         if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
             //Login Success
-            if(Auth::user()->status == 'on'){
-                if(Auth::user()->role =='admin'){
-                    return redirect()->route('dashboardadmin');   
-                }elseif(Auth::user()->role=='pengajar'){
+            if (Auth::user()->status == 'on') {
+                if (Auth::user()->role == 'admin') {
+                    return redirect()->route('dashboardadmin');
+                } elseif (Auth::user()->role == 'pengajar') {
                     return redirect()->route('dashboardguru');
-                }elseif(Auth::user()->role=='siswa'){
+                } elseif (Auth::user()->role == 'siswa') {
                     return redirect()->route('dashboardsiswa');
                 }
-            }elseif(Auth::user()->status == 'off'){
+            } elseif (Auth::user()->status == 'off') {
                 return redirect()->route('logoutsession');
             }
-
         } else { // false
 
             //Login Fail
             Session::flash('error', 'Email atau password salah');
             return redirect()->route('login');
         }
-
     }
 
     public function showFormRegister()
@@ -91,7 +96,7 @@ class AuthController extends Controller
         $rules = [
             'nama_siswa'            => 'required|min:3|max:35',
             'telepon'               => 'required|min:11|max:35',
-            'alamat'                => 'required|min:5|max:255',            
+            'alamat'                => 'required|min:5|max:255',
             'email'                 => 'required|email|unique:users,email',
             'password'              => 'required|confirmed'
         ];
@@ -104,7 +109,7 @@ class AuthController extends Controller
             'telepon.required'         => 'Nomer Telepon wajib diisi',
             'telepon.min'              => 'Nomer Telepon Tidak Valid Minimal 11 Angka',
             'telepon.max'              => 'Nomer Telepon Telpon Terlalu Panjang',
-            
+
             'alamat.required'         => 'Alamat wajib diisi',
             'alamat.min'              => 'Alamat Terlalu Pendek',
             'alamat.max'              => 'Alamat Terlalu Panjang',
@@ -119,7 +124,7 @@ class AuthController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
 
@@ -131,8 +136,8 @@ class AuthController extends Controller
         //     'role' => 'siswa',
         //     'status' => 'off'
         // ]);
-        
-       
+
+
         $user = new User_M;
         $user->username = ucwords(strtolower($request->email));
         $user->email = strtolower($request->email);
@@ -156,8 +161,8 @@ class AuthController extends Controller
             'tanggal_masuk' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
 
-        if($simpan){
-            Session::flash('success', 'Register berhasil! Silahkan login untuk mengakses data');
+        if ($simpan) {
+            Session::flash('success', 'Register berhasil! Silahkan hubungi admin untuk aktivasi akun');
             return redirect()->route('login');
         } else {
             Session::flash('errors', ['' => 'Register gagal! Silahkan ulangi beberapa saat lagi']);
@@ -177,5 +182,40 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
+    public function showhub_admin()
+    {
+        // 
+        return view('siswa.hubungi_admin');
+    }
+    public function hub_admin(Request $request)
+    {
 
+        // //data
+        $email = $request->email;
+
+        $data = array(
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'no_telp' => $request->no_telp,
+            'alamat' => $request->alamat,
+            'name' => $request->name,
+
+        );
+
+
+        //    //kirim email
+        Mail::send('email_user', $data, function ($mail) use ($email) {
+            $mail->to($email, 'no-replay')
+                ->subject("Regitrasi Akun Siswa Baru");
+            $mail->from('bimbeltamanbelajar@gmail.com', 'Bimbel Taman Belajar');
+        });
+
+
+        //cek kegagalan
+        if (Mail::failures()) {
+            return "Gagal Mengirim Email";
+        }
+
+        return redirect()->route('login')->with('status', 'pesan berhasil dikirim tunggu konfirmasi admin');
+    }
 }

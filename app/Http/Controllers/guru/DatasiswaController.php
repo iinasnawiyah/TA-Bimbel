@@ -19,7 +19,7 @@ class DatasiswaController extends Controller
         $cari = Auth::user()->id_user;
         $id = Pengajar_M::select('id_pengajar')->where('id_user',$cari)->first();
         $data = [
-            'data' =>   Pelayanan_M::with('PelayananWithPaket', 'PelayananWithSiswa', 'PelayananWithKelas', 'PelayananWithPengajar')->where('id_pengajar',$id->id_pengajar)->get(),
+            'data' =>   Pelayanan_M::with('PelayananWithPaket', 'PelayananWithSiswa', 'PelayananWithKelas', 'PelayananWithPengajar')->where('id_pengajar',$id->id_pengajar)->where('pelayanan.status','aktif')->get(),
         ];
 
         return view('guru.data_siswa', $data);

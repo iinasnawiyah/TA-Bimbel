@@ -63,6 +63,9 @@
                             <td>
 
                                 <form action="{{ route('siswa.destroy', $d->id_siswa) }}" method="POST">
+                                    <input type="hidden" name="id_siswa" value="{{ $d->id_siswa }}">
+                                    <input type="hidden" name="id_user" value="{{ $d->id_user }}">
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <a href="{{ route('siswa.edit', $d->id_siswa) }}"

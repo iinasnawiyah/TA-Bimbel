@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class ManajemenController extends Controller
 {
@@ -22,19 +22,19 @@ class ManajemenController extends Controller
     public function index()
     {
         $cari = Auth::user()->id_user;
-        $id = Pengajar_M::select('id_pengajar')->where('id_user',$cari)->first();
+        $id = Pengajar_M::select('id_pengajar')->where('id_user', $cari)->first();
         $data = [
-            'data' => Kegiatan_M::select('siswa.nama_siswa','kelas.nama_kelas','id_kegiatan','kegiatan.created_at','deskripsi','bukti_kegiatan')
-                ->join('pelayanan','kegiatan.id_pelayanan','=','pelayanan.id_pelayanan')
-                ->join('siswa','pelayanan.id_siswa','=','siswa.id_siswa')
-                ->join('paket','pelayanan.id_paket','=','paket.id_paket')
-                ->join('kelas','pelayanan.id_kelas','=','kelas.id_kelas')
-                ->where('pelayanan.id_pengajar',$id->id_pengajar)
+            'data' => Kegiatan_M::select('siswa.nama_siswa', 'kelas.nama_kelas', 'id_kegiatan', 'kegiatan.created_at', 'deskripsi', 'bukti_kegiatan')
+                ->join('pelayanan', 'kegiatan.id_pelayanan', '=', 'pelayanan.id_pelayanan')
+                ->join('siswa', 'pelayanan.id_siswa', '=', 'siswa.id_siswa')
+                ->join('paket', 'pelayanan.id_paket', '=', 'paket.id_paket')
+                ->join('kelas', 'pelayanan.id_kelas', '=', 'kelas.id_kelas')
+                ->where('pelayanan.id_pengajar', $id->id_pengajar)->where('pelayanan.status', '!=', 'perlu dibayar')
                 ->get(),
             'storage' => Storage::disk('public')->get('files/'),
         ];
 
-        return view('guru.manajemen_kegiatan',$data);
+        return view('guru.manajemen_kegiatan', $data);
     }
 
     /**
@@ -49,22 +49,22 @@ class ManajemenController extends Controller
 
     public function autosiswa(Request $request)
     {
-        $pengajar=Pengajar_M::where('id_user',Auth::user()->id_user)->get();
-        $id_pengajar=$pengajar[0]->id_pengajar;
+        $pengajar = Pengajar_M::where('id_user', Auth::user()->id_user)->get();
+        $id_pengajar = $pengajar[0]->id_pengajar;
         if ($request->has('q')) {
             $search = $request->q;
             $pelayanan = Pelayanan_M::select("*")
-            ->join('siswa','pelayanan.id_siswa','=','siswa.id_siswa')
-            ->join('pengajar','pelayanan.id_pengajar','=','pengajar.id_pengajar')
-            ->where('nama_siswa', 'LIKE', "%$search%")->where('pelayanan.id_pengajar',$id_pengajar)
-            ->get();
-        }else{
+                ->join('siswa', 'pelayanan.id_siswa', '=', 'siswa.id_siswa')
+                ->join('pengajar', 'pelayanan.id_pengajar', '=', 'pengajar.id_pengajar')
+                ->where('nama_siswa', 'LIKE', "%$search%")->where('pelayanan.id_pengajar', $id_pengajar)->where('pelayanan.status', '!=', 'perlu dibayar')
+                ->get();
+        } else {
             $search = $request->q;
             $pelayanan = Pelayanan_M::select("*")
-            ->join('siswa','pelayanan.id_siswa','=','siswa.id_siswa')
-            ->join('pengajar','pelayanan.id_pengajar','=','pengajar.id_pengajar')
-            ->where('pelayanan.id_pengajar',$id_pengajar)
-            ->get();
+                ->join('siswa', 'pelayanan.id_siswa', '=', 'siswa.id_siswa')
+                ->join('pengajar', 'pelayanan.id_pengajar', '=', 'pengajar.id_pengajar')
+                ->where('pelayanan.id_pengajar', $id_pengajar)->where('pelayanan.status', '!=', 'perlu dibayar')
+                ->get();
         }
 
         return response()->json($pelayanan);
@@ -75,12 +75,12 @@ class ManajemenController extends Controller
         $id = $request->id;
 
         $info = Pelayanan_M::select("*")
-        ->join('siswa','pelayanan.id_siswa','=','siswa.id_siswa')
-        ->join('pengajar','pelayanan.id_pengajar','=','pengajar.id_pengajar')
-        ->join('kelas','pelayanan.id_kelas','=','kelas.id_kelas')
-        ->join('paket','pelayanan.id_paket','=','paket.id_paket')
-        ->where('pelayanan.id_siswa', $id)
-        ->first();
+            ->join('siswa', 'pelayanan.id_siswa', '=', 'siswa.id_siswa')
+            ->join('pengajar', 'pelayanan.id_pengajar', '=', 'pengajar.id_pengajar')
+            ->join('kelas', 'pelayanan.id_kelas', '=', 'kelas.id_kelas')
+            ->join('paket', 'pelayanan.id_paket', '=', 'paket.id_paket')
+            ->where('pelayanan.id_siswa', $id)
+            ->first();
         // $info = DB::table('r_pasiens')->where('id_pasien', $id)->first();
 
         echo json_encode($info);
@@ -99,7 +99,7 @@ class ManajemenController extends Controller
             'photo' => ['required', 'mimes:jpq,png,jpeg']
         ]);
 
-        $name = time().'_'.$request->file('photo')->getClientOriginalName(); 
+        $name = time() . '_' . $request->file('photo')->getClientOriginalName();
         $path = $request->file('photo')->storeAs('files', $name, 'public');
 
         Kegiatan_M::create([
@@ -114,7 +114,7 @@ class ManajemenController extends Controller
 
 
         return redirect()->route('manajemenKegiatan')
-        ->with('success', 'Bukti Kegiatan berhasil ditambahkan');
+            ->with('success', 'Bukti Kegiatan berhasil ditambahkan');
     }
 
     /**

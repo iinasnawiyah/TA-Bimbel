@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class PengajarController extends Controller
 {
@@ -66,7 +67,31 @@ class PengajarController extends Controller
             'tanggal_masuk' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
+        $email = $request->email;
 
+        $data = array(
+            'nama_pengajar' => $request->nama_pengajar,
+            'email' => $request->email,
+            'telepon' => $request->telepon,
+            'alamat' => $request->alamat,
+            'username' => $request->email,
+            'password' => $request->password
+
+        );
+
+
+        //    //kirim email
+        Mail::send('email_tpengajar', $data, function ($mail) use ($email) {
+            $mail->to($email, 'no-replay')
+                ->subject("Regitrasi Pengajar");
+            $mail->from('bimbeltamanbelajar@gmail.com', 'Bimbel Taman Belajar');
+        });
+
+
+        //cek kegagalan
+        if (Mail::failures()) {
+            return "Gagal Mengirim Email";
+        }
         // Pengajar_M::create($request->all());
         return redirect()->route('pengajar.index')
             ->with('success', 'Pengajar Berhasil Di tambah');
@@ -134,10 +159,10 @@ class PengajarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $data = Pengajar_M::find($id);
-        $data->delete();
+        Pengajar_M::destroy($request->id_pengajar);
+        User_M::destroy($request->id_user);
         return redirect()->route('pengajar.index')
             ->with('success', 'Pengajar Berhasil Di hapus');
     }
