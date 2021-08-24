@@ -56,14 +56,17 @@ class ManajemenController extends Controller
             $pelayanan = Pelayanan_M::select("*")
                 ->join('siswa', 'pelayanan.id_siswa', '=', 'siswa.id_siswa')
                 ->join('pengajar', 'pelayanan.id_pengajar', '=', 'pengajar.id_pengajar')
-                ->where('nama_siswa', 'LIKE', "%$search%")->where('pelayanan.id_pengajar', $id_pengajar)->where('pelayanan.status', '!=', 'perlu dibayar')
+                ->where('nama_siswa', 'LIKE', "%$search%")
+                ->where('pelayanan.id_pengajar', $id_pengajar)
+                ->where('pelayanan.status', '!=', 'perlu dibayar')
                 ->get();
         } else {
             $search = $request->q;
             $pelayanan = Pelayanan_M::select("*")
                 ->join('siswa', 'pelayanan.id_siswa', '=', 'siswa.id_siswa')
                 ->join('pengajar', 'pelayanan.id_pengajar', '=', 'pengajar.id_pengajar')
-                ->where('pelayanan.id_pengajar', $id_pengajar)->where('pelayanan.status', '!=', 'perlu dibayar')
+                ->where('pelayanan.id_pengajar', $id_pengajar)
+                ->where('pelayanan.status', '!=', 'perlu dibayar')
                 ->get();
         }
 

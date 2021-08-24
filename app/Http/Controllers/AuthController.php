@@ -139,7 +139,7 @@ class AuthController extends Controller
 
 
         $user = new User_M;
-        $user->username = ucwords(strtolower($request->email));
+        $user->username = ucwords(strtolower($request->nama_siswa));
         $user->email = strtolower($request->email);
         $user->email_verified_at = Carbon::now()->format('Y-m-d H:i:s');
         $user->password = Hash::make($request->password);

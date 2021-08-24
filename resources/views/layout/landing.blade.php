@@ -51,7 +51,7 @@
                             <div class="footer-logo mb30">
                                 <a href="#"><img src="{{ asset('') }}template2/img/lg.png" alt=""></a>
                             </div>
-                            <p>Saudi Arabia has been accused of using anti-terror laws to suppress free expression and failing to carry out independent inquiries into its Yemen.</p>
+                            <p>Taman Belajar Merupakan lembaga bimbingan belajar privat yang hadir untuk, memenuhi kebutuhan belajarmu dan menyelesaikan permasalahan dalam belajar</p>
                         </div>
                     </div>
                     <div class="col-md-2 col-lg-2 col-sm-4 col-xs-12">
@@ -68,8 +68,8 @@
                     </div>
                     <div class="col-md-5 col-lg-5 col-sm-8 col-xs-12">
                         <div class="single-footer footer-subscribe white xs-center">
-                            <h3 class="mb30 xs-font18">Subscribe Our Newsletter</h3>
-                            <p>Doubtful for answered one fat indulged margaret sir shutters together. Ladies so in wholly .</p>
+                            <h3 class="mb30 xs-font18"> Newsletter</h3>
+                            <p>Kami ada untuk membantu menyukseskan kecerdasan generasi bangsa demi masa depan Indonesia yang lebih Gemilang</p>
                             <div class="subscriber-form-area mt50 wow fadeIn">
                                 <!--<form action="#" class="subscriber-form mb100">
                                     <input type="email" name="email" id="email" placeholder="Email Address">
@@ -95,7 +95,7 @@
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 Copyright &copy;<script>
                                     document.write(new Date().getFullYear());
-                                </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                </script> All rights reserved | <i class="" aria-hidden="true"></i> by <a href="" target="_blank">Iin Asnawiyah </a>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </p>
                         </div>

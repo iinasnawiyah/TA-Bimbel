@@ -22,7 +22,7 @@
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="#home" class="stellarnav"><img src="{{ asset('') }}template2/img/20210814_153120.png" alt="logo"></a>
+                        <a href="{{route('index')}}" class="stellarnav"><img src="{{ asset('') }}template2/img/20210814_153120.png" alt="logo"></a>
                     </div>
                     <div id="main-nav" class="stellarnav">
                         <ul id="nav" class="nav navbar-nav pull-right">
@@ -165,10 +165,10 @@
             <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 col-sm-12 col-xs-12">
                 <div class="text-center wow fadeIn">
                     <h2 class="xs-font24">Mengapa Harus Bimbel Taman Belajar?</h2>
-                    <h4 class="xl-font12" >* Karena memiliki pengajar yang berpengalaman</h4>
+                    <h4 class="xl-font12">* Karena memiliki tenaga pengajar yang berpengalaman</h4>
                     <h4>* Skema Pembelajaran Privat</h4>
-                    <h4>* Dikelola oleh guru lulusan UNNES</p>
-                    <h4>* Membantu siswa dalam pembelajaran dan menjadi teman belajar yang menyenangkan</h4>
+                    <h4>* Dikelola oleh profesional</p>
+                        <h4>* Membantu siswa dalam pembelajaran dan menjadi teman belajar yang menyenangkan</h4>
                 </div>
             </div>
         </div>
@@ -205,7 +205,7 @@
                     <p class="font600">Students get employed</p>
                 </div>
             </div> -->
-        </div>
+    </div>
     </div>
 </section>
 <!--FUN FACT AREA AREA END-->
@@ -470,7 +470,7 @@
             <div class="no-padding col-md-4 col-lg-4 col-sm-12 col-xs-12">
                 <div class="contact-form-content padding50 xs-padding20">
                     <div class="contact-title wow fadeIn">
-                        <h3 class="font28 mb50 xs-mb30 xs-font22 xs-mt20">Any question in mind? Don’t Worry Contact Us.</h3>
+                        <h3 class="font28 mb50 xs-mb30 xs-font22 xs-mt20">Ada Pertanyaan? Jangan Khawatir Hubungi Admin.</h3>
                     </div>
                     <div class="contact-form wow fadeIn">
                         <form action="process.php" id="contact-form" method="post">
@@ -505,7 +505,7 @@
                                 </div>
                                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                                     <div class="form-group mb0">
-                                        <button type="submit">Send Message</button>
+                                        <button type="submit">Kirim Pesan</button>
                                     </div>
                                 </div>
                             </div>
@@ -518,8 +518,8 @@
 </section>
 <!--CONTACT US AREA END-->
 
-<!--CLIENT AREA-->
-<div class="client-area  padding-bottom mt100 sm-mt10 xs-mt0">
+<!-- CLIENT AREA-->
+<!-- <div class="client-area  padding-bottom mt100 sm-mt10 xs-mt0">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
@@ -558,8 +558,8 @@
             </div>
         </div>
     </div>
-</div>
-<!--CLIENT AREA END-->
+</div> -->
+<!--CLIENT AREA END -->
 
 <!--ADDMISSION AREA-->
 <section class="admition-area padding-50-50 bg-theme">
@@ -567,8 +567,8 @@
         <div class="row flex-v-center">
             <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                 <div class="admition-content xs-center xs-mb30">
-                    <h3 class="xs-font20">Addmission are now open</h3>
-                    <p>Writers and stars of Veep have responded incredulously to the news an Australian politician required stitches after knocking himself unconscious .</p>
+                    <h3 class="xs-font20">Menerima Siswa Baru </h3>
+                    <p>Segera daftarkan diri anda untuk mengikuti program paket bimbingan belajar bersama Taman Belajar untuk menjadi teman belajar yang asik dan menyenangkan</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
