@@ -217,47 +217,68 @@
             <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 col-sm-12 col-xs-12">
                 <div class="area-title text-center wow fadeIn">
                     <h2 class="xs-font26">Paket Program Bimbel</h2>
+                    <h3 class="">Pilih Paket Program Bimbingan Belajar Sesuai Kelas Yang Di Inginkan </h3>
                 </div>
             </div>
         </div>
         <div class="row course-list">
             <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
                 <div class="single-course mb20">
-                    <img src="{{ asset('') }}template2/img/course/blog-1.jpg" alt="">
+                    <img src="{{ asset('') }}template2/img/slider/4.png" alt="">
                     <div class="course-details padding30">
-                        <h3 class="font18">How to Write a Powerful Speech</h3>
-                        <p>MPs who are leaving the protection of for the campaign trail will render...</p>
-                        <p class="mt30"><a href="#" class="enroll-button">Enroll the Courses</a> <span class="course-price">$29.99</span></p>
+                        <h3 class="font18">Reguler SD Semester 2 + Ujian Sekolah</h3>
+
+                        <ul>
+                            <li>Kelas 6</li>
+                            <li> Tidak Ada Angsuran</li>
+                        </ul>
+                        <P>Ayo bergabung bersama bimbingan belajar Privat Taman Belajar.....</P>
+                        <p class="mt30"><a href="#" class="enroll-button">Enroll the Courses</a> <span class="course-price"> <sup>Rp</sup> 2.850.000 / Semester </span></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
                 <div class="single-course mb20">
-                    <img src="{{ asset('') }}template2/img/course/blog-2.jpg" alt="">
+                    <img src="{{ asset('') }}template2/img/slider/4.png" alt="">
                     <div class="course-details padding30">
-                        <h3 class="font18">The Art and Practice of Leadership</h3>
-                        <p>MPs who are leaving the protection of for the campaign trail will render...</p>
-                        <p class="mt30"><a href="#" class="enroll-button">Enroll the Courses</a> <span class="course-price">$29.99</span></p>
+
+                        <h3 class="font18">Reguler SMP Semester 2 + Ujian Sekolah</h3>
+                        <ul>
+                            <li>Kelas 9</li>
+                            <li> Tidak Ada Angsuran</li>
+                        </ul>
+                        <p>Ayo bergabung bersama bimbingan belajar Privat Taman Belajar.....</p>
+                        <p class="mt30"><a href="#" class="enroll-button">Enroll the Courses</a> <span class="course-price"><sup>Rp</sup> 3.150.000 / Semester</span></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
                 <div class="single-course mb20">
-                    <img src="{{ asset('') }}template2/img/course/blog-3.jpg" alt="">
+                    <img src="{{ asset('') }}template2/img/slider/4.png" alt="">
                     <div class="course-details padding30">
-                        <h3 class="font18">Introduction to Resume Writing</h3>
-                        <p>MPs who are leaving the protection of for the campaign trail will render...</p>
-                        <p class="mt30"><a href="#" class="enroll-button">Enroll the Courses</a> <span class="course-price">$29.99</span></p>
+                        <h3 class="font18">Program 1 Semester SD</h3>
+                        <ul>
+                            <li>Kelas 4, 5 dan 6</li>
+                            <li>Bisa Diangsur Rp600.000/6x</li>
+                        </ul>
+                        <p>Ayo bergabung bersama bimbingan belajar Privat Taman Belajar.....</p>
+                        <p class="mt30"><a href="#" class="enroll-button">Enroll the Courses</a> <span class="course-price"><sup>Rp</sup> 3.420.000 / Semester</span></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
                 <div class="single-course mb20">
-                    <img src="{{ asset('') }}template2/img/course/blog-4.jpg" alt="">
+                    <img src="{{ asset('') }}template2/img/slider/4.png" alt="">
                     <div class="course-details padding30">
-                        <h3 class="font18">The Art and Practice of Leadership</h3>
-                        <p>MPs who are leaving the protection of for the campaign trail will render...</p>
-                        <p class="mt30"><a href="#" class="enroll-button">Enroll the Courses</a> <span class="course-price">$29.99</span></p>
+                        <h3 class="font18">Program 1 Semester SMP</h3>
+                        <ul>
+                            <li>Kelas 7, 8 dan 9</li>
+
+
+                            <LI>Bisa Diangsur Rp.700.000/6x</LI>
+                        </ul>
+                        <p>Ayo bergabung bersama bimbingan belajar Privat Taman Belajar.....</p>
+                        <p class="mt30"><a href="#" class="enroll-button">Enroll the Courses</a> <span class="course-price"><sup>Rp</sup> 3.990.000 / Semeste</span></p>
                     </div>
                 </div>
             </div>
@@ -463,9 +484,10 @@
     <div class="container-fluid no-padding">
         <div class="row no-margin">
             <div class="no-padding col-md-6 col-lg-6 col-sm-12 col-xs-12">
-                <div class="map-area relative">
+                <!-- <div class="map-area relative">
                     <div id="map" style="width: 100%; height: 600px;"> </div>
-                </div>
+                </div> -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.336442779661!2d108.3619429877443!3d-6.350468317359102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ebeeb838247ad%3A0xb2ad446b8fa72219!2sJl.%20Raya%20Singaraja%20No.14%2C%20Singaraja%2C%20Kec.%20Indramayu%2C%20Kabupaten%20Indramayu%2C%20Jawa%20Barat%2045218!5e0!3m2!1sid!2sid!4v1629817220760!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <div class="no-padding col-md-4 col-lg-4 col-sm-12 col-xs-12">
                 <div class="contact-form-content padding50 xs-padding20">

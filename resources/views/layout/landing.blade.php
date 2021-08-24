@@ -95,7 +95,7 @@
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 Copyright &copy;<script>
                                     document.write(new Date().getFullYear());
-                                </script> All rights reserved | <i class="" aria-hidden="true"></i> by <a href="" target="_blank">Iin Asnawiyah </a>
+                                </script> | Bimbel Taman Belajar <i class="" aria-hidden="true"></i> by <a href="" target="_blank">Iin Asnawiyah </a>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </p>
                         </div>
